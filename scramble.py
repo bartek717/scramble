@@ -1,9 +1,8 @@
 # Program Purpose
-# This program reads a sequence of integers and determines the largest, smallest, numbers of evens and odds, cumulative
-# totals, as well as all adjacent duplicates
+# Makes the words in a sentence scambled
 
 # Name: Bartek Kowalski
-# Date: 2021-03-05
+# Date: 2021-03-21
 
 from random import randint
 
@@ -24,6 +23,7 @@ def sentenceSplit(sentence):
 
 
 def sentenceRandom(listsentence):
+    global let2
     newlist = []
     x = 0
     for i in listsentence:
@@ -34,12 +34,23 @@ def sentenceRandom(listsentence):
                 let2 = randint(1, len(listsentence[x]) - 2)
                 if let2 != let1:
                     redo = False
+            if i[let1] == i[let2] and len(i) != 4:
+                let1, let2 = check(let1, let2, i)
             new = replace(let1, let2, i)
             newlist.append(new + " ")
         else:
             newlist.append(listsentence[x] + " ")
         x += 1
     return newlist
+
+
+def check(let1, let2, i):
+    redo = True
+    while redo:
+        if i[let1] != i[let2]:
+            return let1, let2
+        else:
+            let2 = randint(1, len(i) - 2)
 
 
 def replace(let1, let2, i):
@@ -60,4 +71,7 @@ def replace(let1, let2, i):
 
 
 main()
+
+# end
+print("Thank you for using my program!")
 
