@@ -6,15 +6,36 @@
 
 from random import randint
 
+PUNCTUATION = [".", "?", "!", ",", ";", ":", "-", "(", ")", "[", "]", "{", "}", "\'", "\"", "*"]
 # Welcome
 print("Welcome to my program! It scrambles a sentence that was inputted.")
 
 
 def main():
     sentence = input("Enter a sentence without the period at the end: ")
-    listsentence = sentenceSplit(sentence)
+    sentencenopunct = punctuation(sentence)
+    listsentence = sentenceSplit(sentencenopunct)
     newSentence = sentenceRandom(listsentence)
     print(''.join(newSentence))
+
+
+def punctuation(sentence):
+    sentencenopunct = []
+    sentencenopunct1 = []
+    words = sentence.split()
+    for word in words:
+        wordarray = list(word)
+        i = 0
+        while i < len(wordarray):
+            if wordarray[i] in PUNCTUATION:
+                wordarray.remove(wordarray[i])
+            else:
+                i += 1
+        newWord = ''.join(wordarray)
+        newWord2 = newWord + " "
+        sentencenopunct1.append(newWord2)
+    sentencenopunct = ''.join(sentencenopunct1)
+    return sentencenopunct
 
 
 def sentenceSplit(sentence):
@@ -74,4 +95,3 @@ main()
 
 # end
 print("Thank you for using my program!")
-
